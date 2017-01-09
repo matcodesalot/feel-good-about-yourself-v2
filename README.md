@@ -1,6 +1,6 @@
-# Thinkful Full Stack Template
+# Feel Good About Yourself v2
 
-A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
+Live Demo: //fill this out later
 
 ## Getting started
 
