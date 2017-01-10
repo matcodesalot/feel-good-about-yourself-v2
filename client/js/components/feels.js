@@ -6,7 +6,8 @@ export default class Feels extends Component {
 		return (
 			<div>
 				<h1>You made it!</h1>
-				<Link to={`/login`}>Login or Sign Up Here!</Link>
+				<Link to={`/login`}>Log In</Link>
+				<Link to={`/signup`}>Sign Up</Link>
 			</div>
 		);
 	}

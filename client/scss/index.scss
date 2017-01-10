@@ -1,13 +1,51 @@
+$gray: #7c786a;
+$blue: #8dcdc1;
+$green: #d3e397;
+$greenblue: #1ab188;
+$sand: #fff5c3;
+$red: #eb6e44;
+$white: #ffffff;
+
 * {
     box-sizing: border-box;
 }
 
 #login-id {
-	background-color: #8dcdc1;
+	background-color: $blue;
 }
 
-.req {
-	color: #1ab188;
+.tab-group {
+  	list-style: none;
+  	padding: 0;
+  	margin: 0 0 40px 0;
+  	&:after {
+    	content: "";
+    	display: table;
+    	clear: both;
+  	}
+
+  	li a {
+    	display: block;
+    	text-decoration: none;
+    	padding: 15px;
+    	background: rgba(gray, 0.25);
+    	color: gray;
+    	font-size: 20px;
+    	float: left;
+    	width: 50%;
+    	text-align: center;
+    	cursor: pointer;
+    	transition: .5s ease;
+    	&:hover {
+      		background: $greenblue;
+      		color: $white;
+    	}
+  	}
+
+  	.active a {
+  		background: $greenblue;
+  		color: $white;
+  	}
 }
 
 form {
@@ -34,12 +72,12 @@ form {
 	    }
 
     	&:focus {
-      		border-color: #1ab188;
+      		border-color: $greenblue;
     	}
 
     	&:focus + label {
-      		background: #1ab188;
-      		color: white;
+      		background: $greenblue;
+      		color: $white;
       		font-size: 70%;
       		padding: 1px 6px;
       		z-index: 2;
@@ -58,6 +96,9 @@ form {
     	position: absolute;
     	color: #999;
     	padding: 7px 6px;
+    	.req {
+			color: $greenblue;
+		}
   	}
 
   	textarea {
