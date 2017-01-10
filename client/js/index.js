@@ -10,7 +10,7 @@ import Routes from './components/routes';
 
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
-		<Routes />,
+		<Provider store={store}>{Routes}</Provider>,
 		document.getElementById('app')
 	);
 })

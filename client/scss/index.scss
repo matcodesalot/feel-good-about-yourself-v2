@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+#login-id {
+	background-color: #8dcdc1;
+}
+
+.req {
+	color: #1ab188;
+}
+
+form {
+	width: 320px;
+  	float: left;
+  	margin: 20px;
+  	> div {
+    	position: relative;
+    	overflow: hidden;
+  	}
+
+  	input, textarea {
+	    width: 100%;
+	    border: 2px solid gray; 
+	    background: none;
+	    position: relative;
+	    top: 0;
+	    left: 0;
+	    z-index: 1;
+	    padding: 8px 12px;
+	    outline: 0;
+	    &:valid {
+	      background: white; 
+	    }
+
+    	&:focus {
+      		border-color: #1ab188;
+    	}
+
+    	&:focus + label {
+      		background: #1ab188;
+      		color: white;
+      		font-size: 70%;
+      		padding: 1px 6px;
+      		z-index: 2;
+      		text-transform: uppercase;
+    	}
+  	}
+
+  	label {
+    	transition:
+      		background 0.4s,
+      		color 0.4s,
+      		top 0.4s,
+      		bottom 0.4s,
+      		right 0.4s,
+      		left 0.4s;
+    	position: absolute;
+    	color: #999;
+    	padding: 7px 6px;
+  	}
+
+  	textarea {
+    	display: block;
+    	resize: vertical;
+  	}
+}
+
+form.go-bottom {
+  	input, textarea {
+    	padding: 12px 12px 12px 12px; 
+  	}
+
+  	label {
+    	top: 0;
+    	bottom: 0;
+    	left: 0;
+    	width: 100%;
+  	}
+
+  	input:focus, textarea:focus {
+    	padding: 4px 6px 20px 6px; 
+  	}
+
+  	input:focus + label, textarea:focus + label {
+    	top: 100%;
+    	margin-top: -16px;
+  	}
+}
