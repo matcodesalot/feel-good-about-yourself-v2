@@ -17,10 +17,11 @@ class LogIn extends Component {
 
 	render() {
 		return(
-			<div id="login-id">
-				<ul className="tab-group">
-					<li><Link to={`/signup`}>Sign Up</Link></li>
-					<li className="active"><Link to={`/login`}>Log In</Link></li>
+			<div className="fillout">
+				<ul className="row tab-group">
+					<li className="col"><Link to={`/`}>Home</Link></li>
+					<li className="col"><Link to={`/signup`}>Sign Up</Link></li>
+					<li className="col active"><Link to={`/login`}>Log In</Link></li>
 				</ul>
 
 				<div>

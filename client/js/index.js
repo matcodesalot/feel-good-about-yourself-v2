@@ -6,8 +6,6 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import Routes from './components/routes';
 
-//<Provider store={store}>{Routes}</Provider>,
-
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
 		<Provider store={store}>{Routes}</Provider>,

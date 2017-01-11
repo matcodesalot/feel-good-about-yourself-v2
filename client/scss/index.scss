@@ -10,9 +10,35 @@ $white: #ffffff;
     box-sizing: border-box;
 }
 
-#login-id {
-	background-color: $blue;
+/* d^.^b --- Flex Box Grid System --- d^.^b */
+
+/* Parent */
+.row {
+	display: flex;
+	flex-direction: column;
 }
+
+/* Child */
+.col {
+	flex: 1;
+	/*margin: 0.6em;
+	padding: 0.6em;*/
+}
+
+@media screen and (min-width: 50em) {
+	.row {
+		display: flex;
+		flex-direction: row;
+	}
+}
+
+/* d^.^b --- Thanks For Stopping By! --- d^.^b */
+
+/*.fillout {
+	background-color: $blue;
+	width: 75%;
+	height: 90%;
+}*/
 
 .tab-group {
   	list-style: none;
@@ -20,7 +46,6 @@ $white: #ffffff;
   	margin: 0 0 40px 0;
   	&:after {
     	content: "";
-    	display: table;
     	clear: both;
   	}
 
@@ -31,8 +56,6 @@ $white: #ffffff;
     	background: rgba(gray, 0.25);
     	color: gray;
     	font-size: 20px;
-    	float: left;
-    	width: 50%;
     	text-align: center;
     	cursor: pointer;
     	transition: .5s ease;

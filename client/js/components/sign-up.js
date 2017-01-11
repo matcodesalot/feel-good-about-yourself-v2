@@ -13,6 +13,10 @@ class SignUp extends Component {
 			}));
 			this.props.router.push("/");
 		}
+		else {
+			//maybe dispatch a feedback action
+			console.log("Invalid password");
+		}
 		this.refs.username.value = "";
 		this.refs.password.value = "";
 		this.refs.confirmPassword.value = "";
@@ -21,9 +25,10 @@ class SignUp extends Component {
 	render() {
 		return(
 			<div>
-				<ul className="tab-group">
-					<li className="active"><Link to={`/signup`}>Sign Up</Link></li>
-					<li><Link to={`/login`}>Log In</Link></li>
+				<ul className="row tab-group">
+					<li className="col"><Link to={`/`}>Home</Link></li>
+					<li className="col active"><Link to={`/signup`}>Sign Up</Link></li>
+					<li className="col"><Link to={`/login`}>Log In</Link></li>
 				</ul>
 
 				<div>
