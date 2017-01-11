@@ -6,7 +6,10 @@ import {connect} from 'react-redux';
 class LogIn extends Component {
 	onLoginPress(e) {
 		e.preventDefault();
-		this.props.dispatch(actions.logInSuccess(this.refs.username.value));
+		this.props.dispatch(actions.logInAsync({
+			username: this.refs.username.value,
+			password: this.refs.password.value,
+		}));
 		this.refs.username.value = "";
 		this.refs.password.value = "";
 		this.props.router.push("/");
