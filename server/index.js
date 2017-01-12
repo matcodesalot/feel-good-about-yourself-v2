@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import usersRoutes from './endpoints/users-routes';
+import feelsRoutes from './endpoints/feels-routes';
 
 mongoose.Promise = global.Promise;
 
@@ -16,6 +17,7 @@ const app = express();
 app.use(express.static(process.env.CLIENT_PATH));
 
 app.use("/users", usersRoutes);
+app.use("/feels", feelsRoutes);
 
 function runServer() {
     return new Promise((resolve, reject) => {
