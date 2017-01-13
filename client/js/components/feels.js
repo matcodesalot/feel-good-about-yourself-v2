@@ -3,9 +3,6 @@ import {Router, Route, Link} from 'react-router';
 import * as actions from '../redux/actions';
 import {connect} from 'react-redux';
 import FeelItem from './feel-item';
-let myIndex = 1;
-
-//{this.props.feels.map((feel, index) => <FeelItem key={index} index={index} feel={feel} />)}
 
 class Feels extends Component {
 	componentWillMount() {
@@ -31,18 +28,39 @@ class Feels extends Component {
 		console.log(this.props.index);
 	}
 
+	onLogOutPress() {
+		this.props.dispatch(actions.destroySession());
+	}
+
 	render() {
-		return (
-			<div>
-				<h1>You made it!</h1>
-				<FeelItem feel={this.props.currentFeel} />
-				<button className="button button-block" type="button" onClick={this.onPreviousPress.bind(this)}>Previous</button>
-				<button className="button button-block" type="button" onClick={this.onNextPress.bind(this)}>Next</button>
-				<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
-				<Link to={`/login`}>Log In</Link>
-				<Link to={`/signup`}>Sign Up</Link>
-			</div>
-		);
+		if(!this.props.isLoggedIn) {
+			return (
+				<div>
+					<h1>You made it!</h1>
+					<FeelItem feel={this.props.currentFeel} />
+					<button className="button button-block" type="button" onClick={this.onPreviousPress.bind(this)}>Previous</button>
+					<button className="button button-block" type="button" onClick={this.onNextPress.bind(this)}>Next</button>
+					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
+					<Link to={`/login`}>Log In</Link>
+					<Link to={`/signup`}>Sign Up</Link>
+				</div>
+			);
+		}
+		else {
+			return (
+				<div>
+					<h1>You made it!</h1>
+					<h1>Welcome, {this.props.currentUser}!</h1>
+					<FeelItem feel={this.props.currentFeel} />
+					<button className="button button-block" type="button" onClick={this.onPreviousPress.bind(this)}>Previous</button>
+					<button className="button button-block" type="button" onClick={this.onNextPress.bind(this)}>Next</button>
+					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
+					<Link to={`/add`}>Add a feel</Link>
+					<Link to={`/`} onClick={this.onLogOutPress.bind(this)}>Log Out</Link>
+				</div>
+			);
+		}
+		
 	}
 };
 
@@ -51,6 +69,9 @@ let mapStateToProps = function(state, props) {
 		feels: state.feels,
 		currentFeel: state.currentFeel,
 		index: state.index,
+		isLoggedIn: state.isLoggedIn,
+		currentUser: state.currentUser,
+		currentPass: state.currentPass,
 	}
 };
 

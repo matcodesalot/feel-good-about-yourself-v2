@@ -33,7 +33,8 @@ usersRouter.get("/:username", passport.authenticate("basic", {session: false}), 
 			return res.status(500).json({message: "Internal server error"});
 		}
 
-		return res.json(username: user.username);
+		//return res.json({username: user.username});
+		return res.json(user);
 	});
 });
 

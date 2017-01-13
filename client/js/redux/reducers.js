@@ -3,6 +3,7 @@ import * as actions from './actions';
 const initialState = {
 	isLoggedIn: false,
 	currentUser: "",
+	currentPass: "",
 	feels: [],
 	currentFeel: {},
 	error: "",
@@ -15,12 +16,15 @@ export default function reducerFeels(state = initialState, action) {
 		case actions.LOG_IN_SUCCESS:
 			return Object.assign({}, state, {
 				isLoggedIn: true,
-				currentUser: action.payload,
+				currentUser: action.payloadUser,
+				currentPass: action.payloadPass,
 			});
 
 		case actions.LOG_IN_ERROR:
 			return Object.assign({}, state, {
 				isLoggedIn: false,
+				currentUser: null,
+				currentPass: null,
 				error: action.payload,
 			});
 
@@ -60,6 +64,23 @@ export default function reducerFeels(state = initialState, action) {
 		case actions.END_OF_FEELS:
 			return Object.assign({}, state, {
 				index: state.feels.length - 1,
+			});
+
+		case actions.ADD_FEEL_SUCCESS:
+			return Object.assign({}, state, {
+				feels: state.feels.concat(action.payload),
+			});
+
+		case actions.ADD_FEEL_ERROR:
+			return Object.assign({}, state, {
+				error: action.payload,
+			});
+
+		case actions.DESTROY_SESSION:
+			return Object.assign({}, state, {
+				isLoggedIn: false,
+				currentUser: null,
+				currentPass: null,
 			});
 
 		default:
