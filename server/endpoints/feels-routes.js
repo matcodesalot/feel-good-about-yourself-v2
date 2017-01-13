@@ -13,7 +13,7 @@ passport.use(strategy);
 feelsRouter.use(passport.initialize());
 
 //Get all the feels from the db
-feelsRouter.get("/", passport.authenticate("basic", {session: false}), function(req, res) {
+feelsRouter.get("/", function(req, res) {
 	Feel.find({}, function(err, feels) {
 		if(err) {
 			console.log(err);

@@ -87,3 +87,65 @@ export function signUpAsync(user) {
 		})
 	}
 }
+
+export const FETCH_FEELS_SUCCESS = "FETCH_FEELS_SUCCESS";
+export function fetchFeelsSuccess(data) {
+	return {
+		type: FETCH_FEELS_SUCCESS,
+		payload: data,
+	};
+}
+
+export const FETCH_FEELS_ERROR = "FETCH_FEELS_ERROR";
+export function fetchFeelsError(err) {
+	return {
+		type: FETCH_FEELS_ERROR,
+		payload: err,
+	};
+}
+
+export function fetchFeelsAsync() {
+	return function(dispatch) {
+		let endpoint = "/feels";
+
+		return fetch(endpoint, {
+			method: "GET"
+		})
+		.then(response => {
+			if (response.status < 200 || response.status >= 300) {
+				let error = new Error(response.statusText);
+				error.response = response;
+				throw error;
+			}
+			return response.json();
+		})
+		.then(data => {
+			return dispatch(fetchFeelsSuccess(data));
+		})
+		.catch(error => {
+			return dispatch(fetchFeelsError(error));
+		})
+	}
+}
+
+export const NEXT_FEEL = "NEXT_FEEL";
+export function nextFeel(next) {
+	return {
+		type: NEXT_FEEL,
+		payload: next,
+	};
+}
+
+export const RANDOM_FEEL = "RANDOM_FEEL";
+export function randomFeel() {
+	return {
+		type: RANDOM_FEEL,
+	};
+}
+
+export const END_OF_FEELS = "END_OF_FEELS";
+export function endOfFeels() {
+	return {
+		type: END_OF_FEELS,
+	};
+}
