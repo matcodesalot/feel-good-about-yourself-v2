@@ -5,7 +5,7 @@ const initialState = {
 	currentUser: "",
 	currentPass: "",
 	feels: [],
-	currentFeel: {},
+	//currentFeel: {},
 	error: "",
 	feedback: "",
 	index: 0,
@@ -43,7 +43,6 @@ export default function reducerFeels(state = initialState, action) {
 		case actions.FETCH_FEELS_SUCCESS:
 			return Object.assign({}, state, {
 				feels: action.payload,
-				currentFeel: action.payload[state.index],
 			});
 
 		case actions.FETCH_FEELS_ERROR:
@@ -52,9 +51,9 @@ export default function reducerFeels(state = initialState, action) {
 			});
 
 		case actions.RANDOM_FEEL:
+			console.log("LOOK", state.index, state.feels[state.index]);
 			return Object.assign({}, state, {
 				index: Math.floor(Math.random() * state.feels.length),
-				currentFeel: state.feels[state.index],
 			});
 
 		case actions.ADD_FEEL_SUCCESS:
