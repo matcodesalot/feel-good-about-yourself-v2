@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 8080;
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 const app = express();
+exports.app = app;
 
 app.use(express.static(process.env.CLIENT_PATH));
 

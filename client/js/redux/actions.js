@@ -129,25 +129,10 @@ export function fetchFeelsAsync() {
 	}
 }
 
-export const NEXT_FEEL = "NEXT_FEEL";
-export function nextFeel(next) {
-	return {
-		type: NEXT_FEEL,
-		payload: next,
-	};
-}
-
 export const RANDOM_FEEL = "RANDOM_FEEL";
 export function randomFeel() {
 	return {
 		type: RANDOM_FEEL,
-	};
-}
-
-export const END_OF_FEELS = "END_OF_FEELS";
-export function endOfFeels() {
-	return {
-		type: END_OF_FEELS,
 	};
 }
 
@@ -176,7 +161,6 @@ export function addFeelAsync(feel, user) {
 			headers: {
 				"Accept": "application/json",
 				"Content-Type": "application/json",
-				"Authorization": "Basic " + btoa(user.username + ":" + user.password),
 			},
 			body: JSON.stringify({
 				feelText: feel,
@@ -201,9 +185,55 @@ export function addFeelAsync(feel, user) {
 	}
 }
 
-export const DESTROY_SESSION = 'DESTROY_SESSION';
+export const DESTROY_SESSION = "DESTROY_SESSION";
 export function destroySession() {
 	return {
 		type: DESTROY_SESSION,
 	};
+}
+
+export const UPDATE_LIKES_SUCCESS = "UPDATE_LIKES_SUCCESS";
+export function updateLikesSuccess() {
+	return {
+		type: UPDATE_LIKES_SUCCESS,
+	};
+}
+
+export const UPDATE_LIKES_ERROR = "UPDATE_LIKES_ERROR";
+export function updateLikesError(err) {
+	return {
+		type: UPDATE_LIKES_ERROR,
+		payload: err,
+	};
+}
+
+export function updateLikesAsync(feelId, likes) {
+	return function(dispatch) {
+		let endpoint = "/feels/" + feelId;
+
+		return fetch(endpoint, {
+			method: "PUT",
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				likes: likes,
+			})
+		})
+		.then(response => {
+			if (response.status < 200 || response.status >= 300) {
+				let error = new Error(response.statusText);
+				error.response = response;
+				throw error;
+			}
+			return response.json();
+		})
+		.then(() => {
+			return dispatch(updateLikesSuccess());
+		})
+		.catch(error => {
+			return dispatch(updateLikesError(error));
+		})
+	}
 }

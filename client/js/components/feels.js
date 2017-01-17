@@ -9,23 +9,9 @@ class Feels extends Component {
 		this.props.dispatch(actions.fetchFeelsAsync());
 	}
 
-	onPreviousPress() {
-		this.props.dispatch(actions.nextFeel(-1));
-		console.log(this.props.index);
-	}
-
-	onNextPress() {
-		this.props.dispatch(actions.nextFeel(1));
-		if(this.props.index >= this.props.feels.length - 1) {
-			console.log("you've reached the end of the array");
-			this.props.dispatch(actions.endOfFeels());
-		}
-		console.log(this.props.index);
-	}
-
 	onRandomPress() {
 		this.props.dispatch(actions.randomFeel());
-		console.log(this.props.index);
+		console.log(`current index: ${this.props.index}`);
 	}
 
 	onLogOutPress() {
@@ -38,8 +24,6 @@ class Feels extends Component {
 				<div>
 					<h1>You made it!</h1>
 					<FeelItem feel={this.props.currentFeel} />
-					<button className="button button-block" type="button" onClick={this.onPreviousPress.bind(this)}>Previous</button>
-					<button className="button button-block" type="button" onClick={this.onNextPress.bind(this)}>Next</button>
 					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
 					<Link to={`/login`}>Log In</Link>
 					<Link to={`/signup`}>Sign Up</Link>
@@ -52,8 +36,6 @@ class Feels extends Component {
 					<h1>You made it!</h1>
 					<h1>Welcome, {this.props.currentUser}!</h1>
 					<FeelItem feel={this.props.currentFeel} />
-					<button className="button button-block" type="button" onClick={this.onPreviousPress.bind(this)}>Previous</button>
-					<button className="button button-block" type="button" onClick={this.onNextPress.bind(this)}>Next</button>
 					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
 					<Link to={`/add`}>Add a feel</Link>
 					<Link to={`/`} onClick={this.onLogOutPress.bind(this)}>Log Out</Link>

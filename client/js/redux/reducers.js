@@ -8,7 +8,9 @@ const initialState = {
 	currentFeel: {},
 	error: "",
 	feedback: "",
-	index: 1,
+	index: 0,
+	hasPressed: false,
+	likeCounter: 0,
 };
 
 export default function reducerFeels(state = initialState, action) {
@@ -41,18 +43,12 @@ export default function reducerFeels(state = initialState, action) {
 		case actions.FETCH_FEELS_SUCCESS:
 			return Object.assign({}, state, {
 				feels: action.payload,
-				currentFeel: action.payload[state.index - 1],
+				currentFeel: action.payload[state.index],
 			});
 
 		case actions.FETCH_FEELS_ERROR:
 			return Object.assign({}, state, {
 				error: action.payload,
-			});
-
-		case actions.NEXT_FEEL:
-			return Object.assign({}, state, {
-				currentFeel: state.feels[state.index],
-				index: state.index + action.payload,
 			});
 
 		case actions.RANDOM_FEEL:
@@ -61,14 +57,9 @@ export default function reducerFeels(state = initialState, action) {
 				currentFeel: state.feels[state.index],
 			});
 
-		case actions.END_OF_FEELS:
-			return Object.assign({}, state, {
-				index: state.feels.length - 1,
-			});
-
 		case actions.ADD_FEEL_SUCCESS:
 			return Object.assign({}, state, {
-				feels: state.feels.concat(action.payload),
+				feels: state.feels.concat({feelText: action.payload.feelText}),
 			});
 
 		case actions.ADD_FEEL_ERROR:
@@ -81,6 +72,17 @@ export default function reducerFeels(state = initialState, action) {
 				isLoggedIn: false,
 				currentUser: null,
 				currentPass: null,
+			});
+
+		case actions.UPDATE_LIKES_SUCCESS:
+			return Object.assign({}, state, {
+				feedback: "You have successfully liked this feel!",
+				likeCounter: state.currentFeel.likes + 1,
+			});
+
+		case actions.UPDATE_LIKES_ERROR:
+			return Object.assign({}, state, {
+				error: action.payload,
 			});
 
 		default:

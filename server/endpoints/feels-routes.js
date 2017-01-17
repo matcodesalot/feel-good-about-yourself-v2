@@ -24,7 +24,7 @@ feelsRouter.get("/", function(req, res) {
 	});
 });
 
-feelsRouter.post("/", jsonParser, passport.authenticate("basic", {session: false}), function(req, res) {
+feelsRouter.post("/", jsonParser, function(req, res) {
 	//check if the proper fields are in place
 	if(!req.body) {
 		return res.status(400).json({message: "No request body"});
@@ -102,6 +102,37 @@ feelsRouter.post("/", jsonParser, passport.authenticate("basic", {session: false
 
 			return res.status(201).json(feel);
 		})
+	})
+})
+
+feelsRouter.put("/:feelId", jsonParser, function(req, res) {
+	let feelId = req.params.feelId;
+	let likes = req.body.likes;
+
+	if(!req.body) {
+		return res.status(400).json({message: "No request body"});
+	}
+
+	if(!("likes" in req.body)) {
+		return res.status(422).json({message: "Missing field: likes"});
+	}
+
+	//handle likes
+	if(typeof likes !== "number") {
+		return res.status(422).json({message: "Incorrect field type: likes"});
+	}
+
+	if(likes === null) {
+		return res.status(422).json({message: "Incorrect field length: likes"});
+	}
+
+	Feel.findByIdAndUpdate(feelId, {likes: likes}, function(err, feel) {
+		if(err) {
+			console.log(err);
+			return res.status(500).json({message: "Internal server error"});
+		}
+
+		return res.json({});
 	})
 })
 

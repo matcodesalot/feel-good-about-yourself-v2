@@ -3,14 +3,17 @@ import * as actions from '../redux/actions';
 import {connect} from 'react-redux';
 
 class AddFeel extends Component {
-	onSubmitPress() {
-		this.props.dispatch(actions.addFeelAsync(this.refs.feel.value, {username: this.props.currentUser, password: this.props.currentPass}));
+	onSubmitPress(e) {
+		e.preventDefault();
+		this.props.dispatch(actions.addFeelAsync(this.refs.feel.value, {username: this.props.currentUser}));
+		this.refs.feel.value = "";
+		this.props.router.push("/");
 	}
 
 	render() {
 		return(
 			<div>
-				<form className="go-bottom" action="/" method="post">
+				<form className="go-bottom" action="/feels" method="post">
 					<div>
 						<input id="feel" name="feel" type="text" ref="feel" autoComplete="on" required />
 						<label htmlFor="feel">Make the world happy!</label>
@@ -25,7 +28,6 @@ class AddFeel extends Component {
 let mapStateToProps = function(state, props) {
 	return {
 		currentUser: state.currentUser,
-		currentPass: state.currentPass,
 	}
 };
 
