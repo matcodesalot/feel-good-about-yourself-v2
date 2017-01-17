@@ -193,9 +193,11 @@ export function destroySession() {
 }
 
 export const UPDATE_LIKES_SUCCESS = "UPDATE_LIKES_SUCCESS";
-export function updateLikesSuccess() {
+export function updateLikesSuccess(likes, id) {
 	return {
 		type: UPDATE_LIKES_SUCCESS,
+		likes: likes,
+		id: id,
 	};
 }
 
@@ -229,8 +231,8 @@ export function updateLikesAsync(feelId, likes) {
 			}
 			return response.json();
 		})
-		.then(() => {
-			return dispatch(updateLikesSuccess());
+		.then((newLikes) => {
+			return dispatch(updateLikesSuccess(newLikes, feelId));
 		})
 		.catch(error => {
 			return dispatch(updateLikesError(error));

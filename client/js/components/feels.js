@@ -10,7 +10,6 @@ class Feels extends Component {
 	}
 
 	onRandomPress() {
-		console.log(`current index: ${this.props.index}`);
 		this.props.dispatch(actions.randomFeel());
 		console.log(`current index: ${this.props.index}`);
 	}
@@ -50,7 +49,7 @@ class Feels extends Component {
 let mapStateToProps = function(state, props) {
 	return {
 		feels: state.feels,
-		currentFeel: state.feels[state.index],
+		currentFeel: state.feels[state.index] || {},
 		index: state.index,
 		isLoggedIn: state.isLoggedIn,
 		currentUser: state.currentUser,

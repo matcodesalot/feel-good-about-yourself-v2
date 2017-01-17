@@ -5,12 +5,9 @@ const initialState = {
 	currentUser: "",
 	currentPass: "",
 	feels: [],
-	//currentFeel: {},
 	error: "",
 	feedback: "",
 	index: 0,
-	hasPressed: false,
-	likeCounter: 0,
 };
 
 export default function reducerFeels(state = initialState, action) {
@@ -51,7 +48,6 @@ export default function reducerFeels(state = initialState, action) {
 			});
 
 		case actions.RANDOM_FEEL:
-			console.log("LOOK", state.index, state.feels[state.index]);
 			return Object.assign({}, state, {
 				index: Math.floor(Math.random() * state.feels.length),
 			});
@@ -76,7 +72,7 @@ export default function reducerFeels(state = initialState, action) {
 		case actions.UPDATE_LIKES_SUCCESS:
 			return Object.assign({}, state, {
 				feedback: "You have successfully liked this feel!",
-				likeCounter: state.currentFeel.likes + 1,
+				feels: state.feels.map(f => f._id === action.id ? {...f, likes: action.likes.likes} : f),
 			});
 
 		case actions.UPDATE_LIKES_ERROR:
