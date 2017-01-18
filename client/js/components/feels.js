@@ -63,7 +63,6 @@ class Feels extends Component {
 				</div>
 			);
 		}
-		
 	}
 };
 
