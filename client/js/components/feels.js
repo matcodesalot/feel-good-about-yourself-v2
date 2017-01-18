@@ -11,7 +11,6 @@ class Feels extends Component {
 
 	onRandomPress() {
 		this.props.dispatch(actions.randomFeel());
-		console.log(`current index: ${this.props.index}`);
 	}
 
 	onLogOutPress() {
@@ -21,24 +20,46 @@ class Feels extends Component {
 	render() {
 		if(!this.props.isLoggedIn) {
 			return (
-				<div>
-					<h1>You made it!</h1>
+				<div className="container">
+					<header className="clearfix">
+						<nav>
+							<ul className="nav nav-pills pull-right">
+								<li className="active"><Link to={`/`}>Home</Link></li>
+								<li><Link to={`/login`}>Log In</Link></li>
+								<li><Link to={`/signup`}>Sign Up</Link></li>
+							</ul>
+						</nav>
+						<h3 className="text-muted">Feel Good About Yourself</h3>
+					</header>
+					
 					<FeelItem feel={this.props.currentFeel} />
-					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
-					<Link to={`/login`}>Log In</Link>
-					<Link to={`/signup`}>Sign Up</Link>
+
+					<div className="text-center">
+						<button className="btn btn-lg btn-primary" type="button" onClick={this.onRandomPress.bind(this)}>Feel Good</button>
+					</div>
 				</div>
 			);
 		}
 		else {
 			return (
-				<div>
-					<h1>You made it!</h1>
-					<h1>Welcome, {this.props.currentUser}!</h1>
+				<div className="container">
+					<header className="clearfix">
+						<nav>
+							<ul className="nav nav-pills pull-right">
+								<li className="active"><Link to={`/`}>Home</Link></li>
+								<li><Link to={`/add`}>Add a Feel</Link></li>
+								<li><Link to={`/`} onClick={this.onLogOutPress.bind(this)}>Log Out</Link></li>
+							</ul>
+						</nav>
+						<h3 className="text-muted">Feel Good About Yourself</h3>
+						<h4 className="text-muted">Welcome, {this.props.currentUser}!</h4>
+					</header>
+					
 					<FeelItem feel={this.props.currentFeel} />
-					<button className="button button-block" type="button" onClick={this.onRandomPress.bind(this)}>Random</button>
-					<Link to={`/add`}>Add a feel</Link>
-					<Link to={`/`} onClick={this.onLogOutPress.bind(this)}>Log Out</Link>
+
+					<div className="text-center">
+						<button className="btn btn-lg btn-primary" type="button" onClick={this.onRandomPress.bind(this)}>Feel Good</button>
+					</div>
 				</div>
 			);
 		}

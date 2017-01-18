@@ -17,27 +17,25 @@ class LogIn extends Component {
 
 	render() {
 		return(
-			<div className="fillout">
-				<ul className="row tab-group">
-					<li className="col"><Link to={`/`}>Home</Link></li>
-					<li className="col"><Link to={`/signup`}>Sign Up</Link></li>
-					<li className="col active"><Link to={`/login`}>Log In</Link></li>
-				</ul>
+			<div className="container">
+				<header className="clearfix">
+					<nav>
+						<ul className="nav nav-pills pull-right">
+							<li><Link to={`/`}>Home</Link></li>
+							<li className="active"><Link to={`/login`}>Log In</Link></li>
+							<li><Link to={`/signup`}>Sign Up</Link></li>
+						</ul>
+					</nav>
+					<h3 className="text-muted">Welcome Back! We Missed You!</h3>
+				</header>
 
-				<div>
-					<h1>Welcome Back! We Missed You!</h1>
-					<form className="go-bottom" action="/" method="post">
-						<div>
-							<input id="username" name="username" type="text" ref="username" autoComplete="off" required />
-							<label htmlFor="username">Username<span className="req">*</span></label>
-						</div>
-						<div>
-							<input id="password" name="password" type="password" ref="password" autoComplete="off" required />
-							<label htmlFor="password">Password<span className="req">*</span></label>
-						</div>
-						<button className="button button-block" type="submit" onClick={this.onLoginPress.bind(this)}>Log In</button>
-					</form>
-				</div>
+				<form className="form-signin" action="/" method="post">
+					<label className="sr-only" htmlFor="inputUsername">Username*</label>
+					<input className="form-control" id="inputUsername" type="text" ref="username" placeholder="Username" autoComplete="off" required />
+					<label className="sr-only" htmlFor="inputPassword">Password*</label>
+					<input className="form-control" id="inputPassword" type="password" ref="password" placeholder="Password" autoComplete="off" required />
+					<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.onLoginPress.bind(this)}>Log In</button>
+				</form>
 			</div>
 		);
 	}

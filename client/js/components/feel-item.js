@@ -10,20 +10,20 @@ class FeelItem extends Component {
 	render() {
 		if(!this.props.isLoggedIn) {
 			return(
-				<div>
-					<h2>"{this.props.feel.feelText}"</h2>
-					<p>from {this.props.feel.fromUser}</p>
-					<p>likes: {this.props.feel.likes}</p>
+				<div className="hero">
+					<h1>"{this.props.feel.feelText}"</h1>
+					<p className="lead">-{this.props.feel.fromUser}</p>
+					<p className="lead"><i className="fa fa-heart" aria-hidden="true"></i> {this.props.feel.likes}</p>
 				</div>
 			);
 		}
 		else {
 			return(
-				<div>
-					<h2>"{this.props.feel.feelText}"</h2>
-					<p>from {this.props.feel.fromUser}</p>
-					<p>likes: {this.props.feel.likes}</p>
-					<button className="button button-block" type="button" onClick={this.onLikePress.bind(this)}>Like</button>
+				<div className="hero">
+					<h1>"{this.props.feel.feelText}"</h1>
+					<p className="lead">-{this.props.feel.fromUser}</p>
+					<p className="lead"><i className="fa fa-heart" aria-hidden="true"></i> {this.props.feel.likes}</p>
+					<button className="btn btn-lg btn-danger" type="button" onClick={this.onLikePress.bind(this)}>Like</button>
 				</div>
 			);
 		}

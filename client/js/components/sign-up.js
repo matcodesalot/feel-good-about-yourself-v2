@@ -24,31 +24,27 @@ class SignUp extends Component {
 
 	render() {
 		return(
-			<div>
-				<ul className="row tab-group">
-					<li className="col"><Link to={`/`}>Home</Link></li>
-					<li className="col active"><Link to={`/signup`}>Sign Up</Link></li>
-					<li className="col"><Link to={`/login`}>Log In</Link></li>
-				</ul>
+			<div className="container">
+				<header className="clearfix">
+					<nav>
+						<ul className="nav nav-pills pull-right">
+							<li><Link to={`/`}>Home</Link></li>
+							<li><Link to={`/login`}>Log In</Link></li>
+							<li className="active"><Link to={`/signup`}>Sign Up</Link></li>
+						</ul>
+					</nav>
+					<h3 className="text-muted">Sign Up for Free!</h3>
+				</header>
 
-				<div>
-					<h1>Sign Up for Free</h1>
-					<form className="go-bottom" action="/" method="post">
-						<div>
-							<input id="username" name="username" type="text" ref="username" autoComplete="off" required />
-							<label htmlFor="username">Username<span className="req">*</span></label>
-						</div>
-						<div>
-							<input id="password" name="password" type="password" ref="password" autoComplete="off" required />
-							<label htmlFor="password">Password<span className="req">*</span></label>
-						</div>
-						<div>
-							<input id="confirm-password" name="confirm-password" type="password" ref="confirmPassword" autoComplete="off" required />
-							<label htmlFor="confirm-password">Confirm Password<span className="req">*</span></label>
-						</div>
-						<button className="button button-block" type="submit" onClick={this.onSignUpPress.bind(this)}>Get Started</button>
-					</form>
-				</div>
+				<form className="form-signin" action="/" method="post">
+					<label className="sr-only" htmlFor="inputUsername">Username*</label>
+					<input className="form-control" id="inputUsername" type="text" ref="username" placeholder="Username" autoComplete="off" required />
+					<label className="sr-only" htmlFor="inputPassword">Password*</label>
+					<input className="form-control" id="inputPassword" type="password" ref="password" placeholder="Password" autoComplete="off" required />
+					<label className="sr-only" htmlFor="inputConfirmPassword">Confirm Password*</label>
+					<input className="form-control" id="inputConfirmPassword" type="password" ref="confirmPassword" placeholder="Confirm Password" autoComplete="off" required />
+					<button className="btn btn-lg btn-primary btn-block" type="submit" onClick={this.onSignUpPress.bind(this)}>Get Started</button>
+				</form>
 			</div>
 		);
 	}
