@@ -1,4 +1,5 @@
 # Feel Good About Yourself v2
+The most positive web app you will ever use.
 
 ### Feel Good About Yourself v2
 * Live Demo: https://feel-good.herokuapp.com/
@@ -11,82 +12,33 @@
 ![Screenshot](client/assets/feelgoodv2.png)
 ![Screenshot](client/assets/add.png)
 
-## Let's Get Started.
+## API Documentation
 
-### Working on the project
+* /users
+	* GET: get all the users
+	* POST: post a new user to the database
+* /users/`username`
+	* GET: get a specific username
+* /feels
+	* GET: get all the feels
+	* POST: post a new feel to the database
+* /feels/`feelId`
+	* PUT: increase the number of likes from that specific feel by 1
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the database: `sudo mongod`
-* Run the development task: `npm run dev`
-    * Starts a server running at http://localhost:8080
-    * Automatically rebuilds when any of your files change
+## But Mat, why did you make this?
 
-## Directory layout
+* I want to make the world a better place.
+* If I can put a smile on someone's face, my job is done.
+* Feel Good About Yourself was designed to, well, feel good about yourself...
+* Anyone can submit something nice and make the world happier.
+* Spead love not hate.
 
-```
-.
-├── client      Client-side code
-│   ├── assets  Images, videos, etc.
-│   ├── js      JavaScript
-│   └── scss    SASS stylesheets
-├── server      Server-side code
-└── test        Tests
-    ├── client  Client tests
-    └── server  Server tests
-```
+## Easy start up guide
+* If you just want to look at some feels, the only thing you have to do is click the `feel good` button. Congratulations, you did it.
+* If you wish to contribute a feel, you must register and sign in to your account. After you have successfully signed in, simply press the `Add a Feel` button, type a happy, positive message and then press `Submit your feel`. Easy!
 
-## Deployment to Heroku
+## Technical
 
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
+The frontend of this app is developed in React/Redux while the backend uses MongoDB and Node.js. The CSS was seamlessly made using bootstrap and sass. Async actions are dispatched to retrieve and update information from the database. As you register your account, your password is secured from a hashing algorithm using the bcrypt library. We won't hack you. Promise.
 
-### Setting up the project on Heroku
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-* Instruct Heroku to install the development dependencies: `heroku config:set NPM_CONFIG_PRODUCTION=false`
-
-### Create a new mlab database
-
-* Log in to https://mlab.com/
-* Create a new database by pressing `Create new`
-* On plan, click `Single-node`
-* Check `Sandbox` (It's the free one)
-* Scroll down to Database Name and enter your name of choice
-* Press `Create new MongoDB deployment`
-
-### Link your mlab database to your project
-
-* On your mlab dashboard, click the database that you would like to use
-* Press `Users`
-* Press `Add database user`
-* Type in credentials that you will remember and press `Create`
-* Copy and paste the link at the top that looks something like this: `mongodb://<dbuser>:<dbpassword>@ds117929.mlab.com:17929/dbname`
-* In the heroku command line, set the database uri: `heroku config:set DATABASE_URI=mongodb://<dbuser>:<dbpassword>@ds117929.mlab.com:17929/dbname`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
-
-## Continuous Integration
-
-* Add your repository to [Travis CI](https://travis-ci.org/)
-
-## Continuous Deployment
-
-Requires the [Travis CLI client](https://github.com/travis-ci/travis.rb).
-
-### Setting up CD
-
-* Add the following configuration to `.travis.yml`:
-
-    ```
-    deploy:
-      provider: heroku
-      app: YOUR_HEROKU_APP_NAME
-    ```
-* Add your Heroku API key: `travis encrypt $(heroku auth:token) --add deploy.api_key`
-
-### Deploying using CD
-
-* Push your code to GitHub: `git push origin master`
-
+# Thank you <3
