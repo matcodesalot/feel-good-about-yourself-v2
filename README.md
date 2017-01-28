@@ -8,6 +8,9 @@
 * Live Demo: https://infinite-ravine-73596.herokuapp.com/#/?_k=42f42z
 * GitHub: https://github.com/surbhiposwalia/FeelGoodAboutYourself
 
+![Screenshot](client/assets/feelgoodv2.png)
+![Screenshot](client/assets/add.png)
+
 ## Let's Get Started.
 
 ### Working on the project
